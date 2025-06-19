@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Accessible Weather App</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <main class="card" role="main" aria-label="Weather Application">
-    <form class="search" role="search" aria-label="Search city weather" onsubmit="event.preventDefault(); checkWeather(searchBox.value);">
+    <form class="search" role="search" aria-label="Search city weather"
+      onsubmit="event.preventDefault(); checkWeather(searchBox.value);">
+      <button type="button" id="locationBtn" aria-label="Get weather by location">
+        📍
+      </button>
+
       <label for="cityInput" class="visually-hidden">City Name</label>
       <input type="text" id="cityInput" placeholder="Enter city name" aria-label="Enter city name" spellcheck="false" />
       <button type="submit" aria-label="Search">
@@ -25,24 +32,64 @@
       <h1 class="temp" aria-label="Temperature">22°C</h1>
       <h2 class="city" aria-label="City name">New York</h2>
       <div class="details">
-        <div class="col">
-          <img src="images/humidity.png" alt="Humidity icon" />
-          <div>
-            <p class="humidity" aria-label="Humidity">50%</p>
-            <p>Humidity</p>
+        <div class="details basic-details">
+          <div class="col">
+            <img src="images/humidity.png" alt="Humidity icon" />
+            <div>
+              <p class="humidity" aria-label="Humidity">50%</p>
+              <p>Humidity</p>
+            </div>
           </div>
-        </div>
-        <div class="col">
-          <img src="images/wind.png" alt="Wind speed icon" />
-          <div>
-            <p class="wind" aria-label="Wind speed">15 km/h</p>
-            <p>Wind speed</p>
+          <div class="col">
+            <img src="images/wind.png" alt="Wind speed icon" />
+            <div>
+              <p class="wind" aria-label="Wind speed">15 km/h</p>
+              <p>Wind speed</p>
+            </div>
           </div>
         </div>
       </div>
+
+      <button id="toggleBtn" aria-label="toggle more weather info">More Details</button>
+
+      <div class="extra-details" style="display:none">
+        <div class="row">
+          <p><strong>Feels Like:</strong> <span class="feels-like">--</span>°C</p>
+          <p><strong>Pressure:</strong> <span class="pressure">--</span> hPa</p>
+        </div>
+        <div class="row">
+          <p><strong>Sunrise:</strong> <span class="sunrise">--:--</span></p>
+          <p><strong>Sunset:</strong> <span class="sunset">--:--</span></p>
+        </div>
+        <div class="row">
+          <p><strong>Wind Dir:</strong> <span class="wind-dir">--</span></p>
+        </div>
+      </div>
+
+
     </section>
+
+    <div class="forecast-section" style="display: none;">
+      <section class="forecast">
+        <h3>5-Day Forecast</h3>
+        <div class="forecast-cards" id="forecast"></div>
+      </section>
+
+      <section class="hourly-forecast">
+        <h3>Hourly Forecast</h3>
+        <div class="hourly-cards" id="hourly"></div>
+      </section>
+
+      <section class="weather-alerts" id="alerts-section" style="display: none;">
+        <h3>⚠️ Weather Alerts</h3>
+        <div id="alerts"></div>
+      </section>
+
+    </div>
+
   </main>
 
   <script src="script.js"></script>
 </body>
+
 </html>
